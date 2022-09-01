@@ -19,7 +19,7 @@ module.exports = {
     liveReload: true
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json']
+    extensions: ['.js', '.jsx', '.json', '.scss', '.css']
   },
   module: {
     rules: [
@@ -27,6 +27,14 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: 'babel-loader'
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader', // 3. Inject styles into DOM
+          'css-loader', // 2. Turns css into commonjs
+          'sass-loader' // 1. Turns sass into css
+        ]
       }
     ]
   },
