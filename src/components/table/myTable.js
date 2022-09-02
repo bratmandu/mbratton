@@ -1,7 +1,9 @@
+import { any, arrayOf, objectOf } from 'prop-types'
 import React from 'react'
 import './table.scss'
 
-function MyTable() {
+export default function MyTable(props) {
+  const { tableData } = props
   const headerCols = [
     'ID',
     'First Name',
@@ -10,66 +12,38 @@ function MyTable() {
     'Salary'
   ]
 
-  const mainData = [
-    {
-      id: 11111,
-      firstName: 'Jim',
-      secondName: 'McCloskey',
-      active: true,
-      salary: 20000
-    },
-    {
-      id: 222222,
-      firstName: 'Phil',
-      secondName: 'Miller',
-      active: true,
-      salary: 23000
-    },
-    {
-      id: 333333,
-      firstName: 'Jimmy',
-      secondName: 'Pesto',
-      active: false,
-      salary: 22000
-    }
-  ]
+  console.log('tableData: ', tableData)
 
   return (
     <table className="myTable">
       <thead>
         <tr>
           {headerCols.map((col) => (
-            <td>
+            <td key={col}>
               {col}
             </td>
           ))}
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Data Cell 1</td>
-          <td>Data Cell 2</td>
-          <td>Data Cell 3</td>
-          <td>Data Cell 4</td>
-          <td>Data Cell 5</td>
-        </tr>
-        <tr>
-          <td>Data Cell 6</td>
-          <td>Data Cell 7</td>
-          <td>Data Cell 8</td>
-          <td>Data Cell 9</td>
-          <td>Data Cell 10</td>
-        </tr>
-        {/* {mainData.map((data) => (
+        {tableData.map((data) => (
           <tr key={data.id}>
             {Object.entries(data).map(([prop, value]) => (
-              <td>{value}</td>
+              <td key={`td-${value}`}>
+                {value.toString()}
+              </td>
             ))}
           </tr>
-        ))} */}
+        ))}
       </tbody>
     </table>
   )
 }
 
-export default MyTable
+MyTable.propTypes = {
+  tableData: arrayOf(objectOf(any))
+}
+
+MyTable.defaultProps = {
+  tableData: []
+}

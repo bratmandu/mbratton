@@ -7,15 +7,17 @@ import './main.scss'
 
 function Main() {
   const [tableData, setTableData] = useState([])
-
-  const myUrl = 'https://run.mocky.io/v3/198ec2ca-fe61-46d4-b0a6-b2067452c0b1'
+  const siteCode = '713a6c1a-a5da-42d6-ae57-58f513ab838d'
+  const myUrl = `https://run.mocky.io/v3/${siteCode}`
 
   useEffect(() => {
     console.log('I am use effect hook!')
     fetch(myUrl)
       .then((response) => response.json())
       .then((data) => {
-        console.log('data: ', data)
+        if (tableData.length === 0) {
+          setTableData(data)
+        }
       })
   })
 
@@ -24,7 +26,9 @@ function Main() {
       <MyHeader
         headerName="Employee Records"
       />
-      <MyTable />
+      <MyTable
+        tableData={tableData}
+      />
     </div>
   )
 }
