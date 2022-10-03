@@ -11,7 +11,7 @@ function Main() {
   const myUrl = `https://run.mocky.io/v3/${siteCode}`
 
   useEffect(() => {
-    console.log('I am use effect hook!')
+    console.log('I am a use effect hook!')
     fetch(myUrl)
       .then((response) => response.json())
       .then((data) => {
