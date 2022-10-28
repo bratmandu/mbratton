@@ -1,34 +1,47 @@
-import { any, arrayOf, objectOf } from 'prop-types'
 import React, {
   useState, useEffect
 } from 'react'
 import './table.scss'
 
-export default function MyTable(props) {
-  const { tableData } = props
-  const [tableRows, setTableRows] = useState([])
-  const [editingRow, setEditingrow] = useState(false)
+function MyTable() {
   const headerCols = [
     'ID',
     'First Name',
     'Second Name',
     'Active',
     'Salary',
-    'Edit',
     'Delete'
   ]
 
+  const [mainData, setMainData] = useState([])
+  const [editingRow, setEditingRow] = useState()
+
+  const siteCode = '713a6c1a-a5da-42d6-ae57-58f513ab838d'
+  const myUrl = `https://run.mocky.io/v3/${siteCode}`
+
   useEffect(() => {
-    console.log('I am a use effect hook to set table data based on prop!')
-    setTableRows(tableData)
-  }, [tableData])
+    console.log('I am a use effect hook')
+    if (mainData.length === 0) {
+      fetch(myUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('data received: ', data)
+          setMainData(data)
+        })
+    }
+  })
 
   const removeRow = (rowData) => {
-    setTableRows(tableRows.filter((row) => row.id !== rowData.id))
+    console.log('remove row: ', rowData)
+    console.log('filter: ', mainData.filter((row) => (row.id !== rowData.id)))
+    setMainData(mainData.filter((row) => (row.id !== rowData.id)))
   }
 
   const updateRow = (value, rowData, field) => {
-    const rowToUpdate = tableRows.filter((row) => (row.id === rowData.id))
+    const rowToUpdate = mainData.filter((row) => (row.id === rowData.id))
+    console.log('value: ', value)
+    console.log('rowToUpdate[0]: ', rowToUpdate[0])
+    console.log('field: ', field)
     rowToUpdate[0][field] = value
   }
 
@@ -37,35 +50,32 @@ export default function MyTable(props) {
       <thead>
         <tr>
           {headerCols.map((col) => (
-            <td key={col}>
+            <td>
               {col}
             </td>
           ))}
         </tr>
       </thead>
       <tbody>
-        {tableRows.map((data) => (
+        {mainData.map((data) => (
           <tr key={data.id}>
             {Object.entries(data).map(([prop, value]) => (
               <td
-                key={`td-${value}`}
                 contentEditable={data.id === editingRow}
                 field={prop}
                 onBlur={(event) => {
                   updateRow(event.target.innerHTML, data, prop)
                 }}
               >
-                {value.toString()}
+                {value}
               </td>
             ))}
             <td>
-              <button type="button" onClick={() => { setEditingrow(data.id) }}>
-                Edit Row
-              </button>
-            </td>
-            <td>
               <button type="button" onClick={() => { removeRow(data) }}>
                 Delete Row
+              </button>
+              <button type="button" onClick={() => { setEditingRow(data.id) }}>
+                Edit Row
               </button>
             </td>
           </tr>
@@ -75,10 +85,4 @@ export default function MyTable(props) {
   )
 }
 
-MyTable.propTypes = {
-  tableData: arrayOf(objectOf(any))
-}
-
-MyTable.defaultProps = {
-  tableData: []
-}
+export default MyTable
