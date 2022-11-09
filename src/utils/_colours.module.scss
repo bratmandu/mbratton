@@ -4,3 +4,10 @@ $brand-page-title: rgb(73, 73, 73);
 $brand-tableText: rgb(179, 72, 193);
 $brand-tableTextHeading: rgb(0, 0, 0);
 $brand-border: black;
+$status-positive: green;
+$status-negative: red;
+
+:export {
+  statusNegative: $status-negative;
+  statusPositive: $status-positive;
+}

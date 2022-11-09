@@ -1,4 +1,6 @@
-@import '../../utils/colours.scss';
+@import '../../utils/_colours.module.scss';
+@import "ag-grid-community/dist/styles/ag-grid.css";
+@import "ag-grid-community/dist/styles/ag-theme-balham-dark.css";
 
 .myTable {
   color: $brand-tableText;
