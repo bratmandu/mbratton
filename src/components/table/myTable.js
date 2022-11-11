@@ -28,22 +28,43 @@ function MyTable() {
     params.api.sizeColumnsToFit()
   }
 
+  const getRowData = () => {
+    const rowData = []
+    const rowDataSorted = []
+    gridApi.forEachNode((node) => rowData.push(node.data))
+    gridApi.forEachNodeAfterFilterAndSort((node) => rowDataSorted.push(node.data))
+    console.log('current table data: ', rowData)
+    console.log('current table data sorted: ', rowDataSorted)
+  }
+
   return (
-    <div className="ag-theme-balham-dark">
-      <AgGridReact
-        onGridReady={onGridReady}
-        rowData={mainData}
-        columnDefs={colDefs}
-        defaultColDef={{
-          sortable: true,
-          filter: 'agTextColumnFilter',
-          resizable: true,
-          floatingFilter: true
+    <>
+      <button
+        type="button"
+        onClick={() => {
+          getRowData()
         }}
-        animateRows
-        rowHeight={30}
-      />
-    </div>
+      >
+        Log current Table Data
+      </button>
+      <br />
+      <br />
+      <div className="ag-theme-balham-dark">
+        <AgGridReact
+          onGridReady={onGridReady}
+          rowData={mainData}
+          columnDefs={colDefs}
+          defaultColDef={{
+            sortable: true,
+            filter: 'agTextColumnFilter',
+            resizable: true,
+            floatingFilter: true
+          }}
+          animateRows
+          rowHeight={30}
+        />
+      </div>
+    </>
   )
 }
 

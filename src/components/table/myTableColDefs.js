@@ -15,13 +15,13 @@ export default [
   },
   {
     field: 'secondName',
-    headerName: 'Surname'
+    headerName: 'Surname',
+    editable: true
   },
   {
     field: 'salary',
     headerName: 'Salary',
     cellStyle(params) {
-      console.log('style params: ', params)
       const thisColumnField = params.column.colId
       const salaryValue = params.data[thisColumnField]
       if (salaryValue > 20000) {
@@ -30,7 +30,6 @@ export default [
       return { color: _colours.statusNegative }
     },
     cellRenderer: (params) => {
-      console.log('renderer params.value: ', params.value)
       const updatedVal = `£${params.value}`
       return updatedVal
     }
