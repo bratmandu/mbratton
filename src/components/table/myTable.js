@@ -1,7 +1,6 @@
 import React, {
   useState, useEffect
 } from 'react'
-import { v4 as uuid } from 'uuid'
 import './table.scss'
 import { AgGridReact } from 'ag-grid-react'
 import colDefs from './myTableColDefs'
