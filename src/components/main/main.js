@@ -1,15 +1,16 @@
 import React from 'react'
-import MyTable from '../table/myTable'
 import MyHeader from '../header/myHeader'
 import './main.scss'
+import UseEffectSamples from '../samples/useEffectSamples'
 
 function Main() {
   return (
     <div>
       <MyHeader
-        headerName="Employee Records"
+        headerName="Sample React App"
+        pageName="UseEffect examples"
       />
-      <MyTable />
+      <UseEffectSamples />
     </div>
   )
 }

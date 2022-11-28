@@ -1,16 +1,16 @@
 import React from 'react'
 import MyHeader from '../header/myHeader'
-import './second.scss'
-import ArrayOperationSamples from '../samples/arrayOperationSamples'
+import './third.scss'
+import JsonLoopSamples from '../samples/loopingOverJson'
 
 function Second() {
   return (
     <div>
       <MyHeader
         headerName="Sample React App"
-        pageName="arrayOperation examples"
+        pageName="JSON Loop examples"
       />
-      <ArrayOperationSamples />
+      <JsonLoopSamples />
     </div>
   )
 }
