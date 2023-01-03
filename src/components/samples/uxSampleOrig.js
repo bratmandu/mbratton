@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import { errorMap, fieldLengths } from '../../utils/formUtils'
 import './samples.scss'
 
 function UXOrigSample() {
-  // Form contents Object
+  // Form contents Object, this is what we would 'submit' and will be populated using the form
   const [formData, setFormData] = useState({
     firstName: '',
     secondName: '',
@@ -12,34 +13,37 @@ function UXOrigSample() {
     message: ''
   })
 
-  // Validation Object
+  /**
+   *  Validation Object, any error messages from invalid inputs are stored in here to keep track of the form as a whole,
+   * in the useEffect with this and it's nested objects as dependencies, we check if any of these have an error message,
+   * which means there are some errors in the form and it should not be submitted so hasError = false
+   */
   const [formValidation, setFormValidation] = useState({
-    firstNameError: '',
-    secondNameError: '',
-    phoneError: '',
-    emailError: '',
-    messageError: ''
+    firstName: '',
+    secondName: '',
+    phone: '',
+    email: '',
+    message: ''
   })
 
   const [hasError, setHasError] = useState(true)
 
-  // RegEx for validation and error phrases
-  const nameRegEx = /^[A-Za-z]+((\s)?((\'|\-|\.)?([A-Za-z])?))*$/
-  const phoneRegEx = /^[0-9]+$/
-  const emailRegEx = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-  const nameError = 'Names should be between 1-40 characters, using only letters, spaces, apostrophies, hyphens or dots.'
-  const phoneError = 'Please enter a valid phone number.'
-  const emailError = 'Please enter a valid email addess.'
-  const messageError = 'Messages must be no longer than 280 characters.'
-
   /**
    * UseEffect to check the formValidation state object and if it has any errors, then update the hasError state variable
-   * This lets us know not to submit the form
+   * This lets us know not to submit the form. We need to track each item in the formValidation object to ensure hasError is set correctly
    */
   useEffect(() => {
-    const validationErrors = Object.entries(formValidation).some((el) => el[1].length > 0)
+    const validationErrors = Object.entries(formValidation).some((el) => el[1]?.length > 0)
     setHasError(validationErrors)
-  }, [formValidation])
+  }, [
+    formValidation,
+    formValidation.firstName,
+    formValidation.secondName,
+    formValidation.ageBracket,
+    formValidation.phone,
+    formValidation.email,
+    formValidation.message
+  ])
 
   /**
    * Submit form handler, currently just logs out current formData state
@@ -47,48 +51,27 @@ function UXOrigSample() {
    */
   const formSubmit = (event) => {
     event.preventDefault()
-    console.log('submit content: ', formData)
+    console.log('submit form validation object: ', formValidation)
+    console.log('submit hasErrors: ', hasError)
+    if (!hasError) {
+      console.log('submitting content: ', formData)
+    }
   }
 
   /**
-   * Validates the input, using a a switch to handle the different input types
+   * Validates the input, if the select is changed from the default it will be valid
+   * If not the form will prompt use to change it on submit
    * Updates the formValidation object so we keep track of what errors are present
    * @param {String} id the id of the input being evaluated
    * @param {String} value the value of the input
    */
-  const validateFormInput = (id, value) => {
+  const validateFormInput = (id, value, name) => {
     let isValid = true
-    let errorText = ''
-
-    switch (id) {
-      case 'firstName':
-        isValid = nameRegEx.test(value) && value.length < 40
-        errorText = !isValid ? nameError : ''
-        setFormValidation({ ...formValidation, firstNameError: errorText })
-        break
-      case 'secondName':
-        isValid = nameRegEx.test(value) && value.length > 0 && value.length < 40
-        errorText = !isValid ? nameError : ''
-        setFormValidation({ ...formValidation, secondNameError: errorText })
-        break
-      case 'phone':
-        isValid = phoneRegEx.test(value) && value.length > 0 && value.length < 40
-        errorText = !isValid ? phoneError : ''
-        setFormValidation({ ...formValidation, phoneError: errorText })
-        break
-      case 'email':
-        isValid = emailRegEx.test(value) && value.length > 0 && value.length < 40
-        errorText = !isValid ? emailError : ''
-        setFormValidation({ ...formValidation, emailError: errorText })
-        break
-      case 'message':
-        isValid = true
-        errorText = !isValid ? messageError : ''
-        setFormValidation({ ...formValidation, messageError: errorText })
-        break
-      default:
-        break
-    }
+    const maxFieldLength = errorMap[name].fieldLength
+    const regExType = errorMap[name].regEx
+    isValid = regExType ? (regExType.test(value) && value.length <= maxFieldLength) : name === 'select' || value.length <= maxFieldLength
+    const errorText = !isValid ? errorMap[name].errorText : ''
+    setFormValidation({ ...formValidation, [id]: value.length > 0 ? errorText : '' })
   }
 
   /**
@@ -96,9 +79,9 @@ function UXOrigSample() {
    * @param {Object} params change handler params
    */
   const handleFormChange = (params) => {
-    const { id, value } = params.target
+    const { id, value, name } = params.target
     const trimmedValue = value.trim()
-    validateFormInput(id, trimmedValue)
+    validateFormInput(id, trimmedValue, name)
     setFormData({ ...formData, [id]: trimmedValue })
   }
 
@@ -110,51 +93,61 @@ function UXOrigSample() {
    * @returns void
    */
   const handleEmailUpdated = (params) => {
-    if (!formValidation.emailError) return
-    const { id, value } = params.target
+    if (!formValidation.email) return
+    const { id, value, name } = params.target
     const trimmedValue = value.trim()
-    validateFormInput(id, trimmedValue)
+    validateFormInput(id, trimmedValue, name)
   }
 
   return (
     <div className="wrapper">
-      <div className="form-wrapper">
+      <div className="form-wrapper m-3">
         <form onSubmit={formSubmit}>
-          <fieldset>
-            <legend>
+          <fieldset className="m-3">
+            <legend className="pl-3 p-1">
               Name
             </legend>
-            <label htmlFor="firstName">
-              First Name:
-            </label>
-            <input
-              type="text"
-              id="firstName"
-              onChange={handleFormChange}
-              required
-              className={`${formValidation.firstNameError.length > 0 && 'input-error'}`}
-            />
-            <div className="error-label">
-              {formValidation.firstNameError}
+            <div className="row pl-3 mt-3">
+              <label htmlFor="firstName" className="col-3 m-0">
+                First Name:
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="firstName"
+                onChange={handleFormChange}
+                required
+                className={`${formValidation.firstName.length > 0 && 'input-error'} col-5`}
+              />
             </div>
-            <label htmlFor="secondName">
-              Second Name:
-            </label>
-            <input
-              type="text"
-              id="secondName"
-              onChange={handleFormChange}
-              required
-              className={`${formValidation.secondNameError.length > 0 && 'input-error'}`}
-            />
-            <div className="error-label">
-              {formValidation.secondNameError}
+            <div className="row px-3 mt-3">
+              <div className="error-label px-3">
+                {formValidation.firstName}
+              </div>
+            </div>
+            <div className="row pl-3 mt-3">
+              <label htmlFor="secondName" className="col-3 m-0">
+                Second Name:
+              </label>
+              <input
+                type="text"
+                name="name"
+                id="secondName"
+                onChange={handleFormChange}
+                required
+                className={`${formValidation.secondName.length > 0 && 'input-error'} col-5`}
+              />
+            </div>
+            <div className="row px-3 mt-3">
+              <div className="error-label px-3">
+                {formValidation.secondName}
+              </div>
             </div>
           </fieldset>
-          <label htmlFor="ageBracket">
+          <label htmlFor="ageBracket" className="my-3 pl-3">
             Age Bracket:
           </label>
-          <select id="ageBracket" defaultValue="" onChange={handleFormChange} required>
+          <select id="ageBracket" name="select" defaultValue="" className="p-1" onChange={handleFormChange} required>
             <option disabled value="">
               Select an option
             </option>
@@ -174,52 +167,72 @@ function UXOrigSample() {
               65+
             </option>
           </select>
-          <fieldset>
-            <legend>
+          <fieldset className="m-3">
+            <legend className="pl-3 p-1">
               Contact
             </legend>
-            <label htmlFor="phone">
-              Phone:
-            </label>
-            <input
-              type="text"
-              id="phone"
-              onChange={handleFormChange}
-              required
-              className={`${formValidation.phoneError.length > 0 && 'input-error'}`}
-            />
-            <div className="error-label">
-              {formValidation.phoneError}
+            <div className="row pl-3 my-3">
+              <label htmlFor="phone" className="col-3 m-0">
+                Phone:
+              </label>
+              <input
+                type="text"
+                name="phone"
+                id="phone"
+                onChange={handleFormChange}
+                required
+                className={`${formValidation.phone.length > 0 && 'input-error'} col-5`}
+              />
             </div>
-            <label htmlFor="email">
-              Email:
-            </label>
-            <input
-              type="text"
-              id="email"
-              onChange={handleEmailUpdated}
-              onBlur={handleFormChange}
-              required
-              className={`${formValidation.emailError.length > 0 && 'input-error'}`}
-            />
-            <div className="error-label">
-              {formValidation.emailError}
+            <div className="row px-3 mt-3">
+              <div className="error-label px-3">
+                {formValidation.phone}
+              </div>
+            </div>
+            <div className="row pl-3 my-3">
+              <label htmlFor="email" className="col-3 m-0">
+                Email:
+              </label>
+              <input
+                type="text"
+                name="email"
+                id="email"
+                onChange={handleEmailUpdated}
+                onBlur={handleFormChange}
+                required
+                className={`${formValidation.email?.length > 0 && 'input-error'} col-5`}
+              />
+            </div>
+            <div className="row px-3 mt-3">
+              <div className="error-label px-3">
+                {formValidation.email}
+              </div>
             </div>
           </fieldset>
-          <label htmlFor="message">
-            Message:
-          </label>
-          <input
-            type="text"
-            id="message"
-            onChange={handleFormChange}
-            required
-            className={`${formValidation.messageError.length > 0 && 'input-error'}`}
-          />
-          <div className="error-label">
-            {formValidation.messageError}
+          <div className="row m-3">
+            <label htmlFor="message">
+              Message:
+            </label>
+            <textarea
+              type="text"
+              name="message"
+              id="message"
+              onChange={handleFormChange}
+              required
+              rows={4}
+              maxLength={fieldLengths.message}
+              className={`${formValidation.message.length > 0 && 'input-error'} col-12`}
+              placeholder="Enter message here."
+            />
           </div>
-          <button type="submit" disabled={hasError} className="submit-button">
+          {/* <div className="error-label">
+            {formValidation.message}
+          </div> */}
+          <button
+            type="submit"
+            disabled={hasError}
+            className="submit-button m-3 p-2"
+          >
             Submit
           </button>
         </form>
