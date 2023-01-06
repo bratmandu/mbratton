@@ -86,7 +86,7 @@ function UXStrippedSample() {
    * @param {Object} params change handler params
    */
   const handleFormChange = (params) => {
-    const { id, value, name } = params.target
+    const { id, value } = params.target
     const trimmedValue = value.trim()
     // validateFormInput(id, trimmedValue, name)
     setFormData({ ...formData, [id]: trimmedValue })

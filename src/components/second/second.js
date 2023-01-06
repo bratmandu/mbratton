@@ -10,6 +10,7 @@ function Second() {
         headerName="Sample React App"
         pageName="arrayOperation examples"
       />
+      <hr />
       <ArrayOperationSamples />
     </div>
   )

@@ -10,6 +10,7 @@ function Second() {
         headerName="Sample React App"
         pageName="JSON Loop examples"
       />
+      <hr />
       <JsonLoopSamples />
     </div>
   )

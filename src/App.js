@@ -7,6 +7,7 @@ import Second from './components/second/second'
 import Third from './components/third/third'
 import Fourth from './components/fourth/fourth'
 import Fifth from './components/fifth/fifth'
+import Sixth from './components/sixth/sixth'
 
 function App() {
   return (
@@ -28,6 +29,9 @@ function App() {
         <li>
           <Link to="/fifth">UX Stripped Sample</Link>
         </li>
+        <li>
+          <Link to="/sixth">useCallback Sample</Link>
+        </li>
       </ul>
       <Routes>
         <Route exact path="/" element={<Main />} />
@@ -35,6 +39,7 @@ function App() {
         <Route path="/third" element={<Third />} />
         <Route path="/fourth" element={<Fourth />} />
         <Route path="/fifth" element={<Fifth />} />
+        <Route path="/sixth" element={<Sixth />} />
         <Route path="*" element={<Main />} />
       </Routes>
     </div>

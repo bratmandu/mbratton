@@ -10,6 +10,7 @@ function Fifth() {
         headerName="Sample React App"
         pageName="UX Stripped example"
       />
+      <hr />
       <UXStrippedSample />
     </div>
   )

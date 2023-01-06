@@ -10,6 +10,7 @@ function Main() {
         headerName="Sample React App"
         pageName="UseEffect examples"
       />
+      <hr />
       <UseEffectSamples />
     </div>
   )

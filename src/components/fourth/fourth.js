@@ -10,6 +10,7 @@ function Fourth() {
         headerName="Sample React App"
         pageName="UX Original examples"
       />
+      <hr />
       <UXOrigSample />
     </div>
   )
