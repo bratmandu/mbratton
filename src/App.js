@@ -6,10 +6,11 @@ import Main from './components/main/main'
 import Second from './components/second/second'
 import Third from './components/third/third'
 import Fourth from './components/fourth/fourth'
+import Fifth from './components/fifth/fifth'
 
 function App() {
   return (
-    <div>
+    <div className="p-3">
       <div>Status text</div>
       <ul>
         <li>
@@ -24,12 +25,16 @@ function App() {
         <li>
           <Link to="/fourth">UX Original Sample</Link>
         </li>
+        <li>
+          <Link to="/fifth">UX Stripped Sample</Link>
+        </li>
       </ul>
       <Routes>
         <Route exact path="/" element={<Main />} />
         <Route path="/second" element={<Second />} />
         <Route path="/third" element={<Third />} />
         <Route path="/fourth" element={<Fourth />} />
+        <Route path="/fifth" element={<Fifth />} />
         <Route path="*" element={<Main />} />
       </Routes>
     </div>
