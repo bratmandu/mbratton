@@ -1,7 +1,7 @@
 import React, {
   useState, useEffect
 } from 'react'
-import './samples.scss'
+import MyHeader from '../standard/header/myHeader'
 
 function UseEffectSamples() {
   const [floorLevel, setFloorLevel] = useState(0)
@@ -64,6 +64,9 @@ function UseEffectSamples() {
 
   return (
     <>
+      <MyHeader
+        pageName="UseEffect samples:"
+      />
       <div>
         {`Current floor: ${floorLevel}`}
         <br />

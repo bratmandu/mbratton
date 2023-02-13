@@ -5,12 +5,16 @@ export default function MyHeader(props) {
   const { headerName, pageName } = props
   return (
     <div>
-      <h1>
-        {headerName}
-      </h1>
-      <h3>
-        {pageName}
-      </h3>
+      {headerName && (
+        <h1>
+          {headerName}
+        </h1>
+      )}
+      {pageName && (
+        <h3>
+          {pageName}
+        </h3>
+      )}
     </div>
   )
 }
@@ -21,6 +25,6 @@ MyHeader.propTypes = {
 }
 
 MyHeader.defaultProps = {
-  headerName: 'My Header',
-  pageName: 'My Page Name'
+  headerName: '',
+  pageName: ''
 }

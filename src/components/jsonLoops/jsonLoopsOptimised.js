@@ -1,7 +1,7 @@
 import React from 'react'
-import './samples.scss'
+import MyHeader from '../standard/header/myHeader'
 
-function JsonLoopSamples() {
+function JsonLoopSamplesOptimised() {
   const headerCols = [
     'ID',
     'First Name',
@@ -43,29 +43,34 @@ function JsonLoopSamples() {
   ]
 
   return (
-    <table>
-      <thead>
-        <tr>
-          {headerCols.map((col) => (
-            <td>
-              {col}
-            </td>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {sampleJson.map((data) => (
+    <div>
+      <MyHeader
+        pageName="JSON Loop examples"
+      />
+      <table>
+        <thead>
           <tr>
-            {Object.entries(data).map(([prop, value]) => (
+            {headerCols.map((col) => (
               <td>
-                {value}
+                {col}
               </td>
             ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {sampleJson.map((data) => (
+            <tr>
+              {Object.entries(data).map(([prop, value]) => (
+                <td>
+                  {value}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
 
-export default JsonLoopSamples
+export default JsonLoopSamplesOptimised

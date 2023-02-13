@@ -1,8 +1,8 @@
 import React, {
-  useState, useEffect
+  useState
 } from 'react'
-import './samples.scss'
 import _ from 'lodash'
+import MyHeader from '../standard/header/myHeader'
 
 function ArrayOperationSamples() {
   const sampleJson = [
@@ -76,7 +76,9 @@ function ArrayOperationSamples() {
 
   return (
     <>
-
+      <MyHeader
+        pageName="Array Operation examples"
+      />
       <button
         type="button"
         onClick={() => {
