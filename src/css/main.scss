@@ -7,6 +7,7 @@ body {
   padding-top: 70px;
 }
 
+// values for smaller screens
 @media (max-width: 992px) {
   body {
     padding-top: 55px;
@@ -18,18 +19,29 @@ body {
       margin-top: 1rem;
     }
   }
+
+  .mb-light {
+    height: auto;
+  }
 }
 
 h1 {
   font: 1.5em sans-serif;
 }
 
-.mb-content {
-  padding-top: 70px;
+// use height only on larger screens
+@media (min-width: 992px) {
+  .mb-light {
+    height: 4rem;
+  }
 }
 
 .mb-light {
   background-color: rgb(186, 170, 198);
+}
+
+.mb-content {
+  top: 4rem;
 }
 
 .mb-border {

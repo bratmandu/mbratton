@@ -17,7 +17,7 @@ function App() {
   return (
     <div>
       <Nav />
-      <div className="m-3">
+      <div className="m-3 mb-content position-absolute">
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
