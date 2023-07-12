@@ -106,7 +106,7 @@ function UXStrippedSample() {
       <MyHeader
         pageName="UX Stripped example"
       />
-      <div className="wrapper">
+      <div className="wrapper w-100">
         <div className="form-wrapper m-3">
           <form onSubmit={formSubmit}>
             <div className="ps-3 mt-3">

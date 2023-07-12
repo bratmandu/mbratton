@@ -112,7 +112,7 @@ function UXOrigSample() {
       <MyHeader
         pageName="UX Original examples"
       />
-      <div className="wrapper">
+      <div className="wrapper w-100">
         <div className="form-wrapper m-3">
           <form onSubmit={formSubmit}>
             <fieldset className="m-3">

@@ -3,6 +3,7 @@ import {
   Routes, Route
 } from 'react-router-dom'
 import Nav from './utils/nav'
+import Home from './components/home/home'
 import UseEffectSamples from './components/useEffects/sampleUseEffect'
 import ArrayOperationSamples from './components/arrayOps/SampleArrayOperations'
 import JsonLoopSamplesOptimised from './components/jsonLoops/jsonLoopsOptimised'
@@ -18,7 +19,8 @@ function App() {
       <Nav />
       <div className="m-3">
         <Routes>
-          <Route exact path="/" element={<UseEffectSamples />} />
+          <Route exact path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/useEffect" element={<UseEffectSamples />} />
           <Route path="/arrays" element={<ArrayOperationSamples />} />
           <Route path="/jsonLoops" element={<JsonLoopSamplesOptimised />} />
