@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { errorMap, fieldLengths } from '../../utils/formUtils'
 import MyHeader from '../standard/header/myHeader'
-import '../../css/samples.scss'
+// import '../../css/samples.scss'
 
 function UXOrigSample() {
   // Form contents Object, this is what we would 'submit' and will be populated using the form

@@ -4,7 +4,27 @@
 
 body {
   font: 1em sans-serif;
+  padding-top: 70px;
 }
+
+@media (max-width: 992px) {
+  body {
+    padding-top: 55px;
+  }
+}
+
+h1 {
+  font: 1.5em sans-serif;
+}
+
+.mb-content {
+  padding-top: 70px;
+}
+
+.mb-light {
+  background-color: rgb(186, 170, 198);
+}
+
 .wrapper {
   width: 50%;
   display: flex;
