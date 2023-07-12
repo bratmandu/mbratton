@@ -16,7 +16,7 @@ function App() {
   return (
     <div>
       <Nav />
-      <div>
+      <div className="m-3">
         <Routes>
           <Route exact path="/" element={<UseEffectSamples />} />
           <Route path="/useEffect" element={<UseEffectSamples />} />
