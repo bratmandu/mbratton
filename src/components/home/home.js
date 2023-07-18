@@ -96,10 +96,18 @@ function Home() {
         before transitioning into using AGGrid.
       </p>
       <p>
-        I of course use VS Code for my IDE, with airbnb rules with
+        Of course I use VS Code for my IDE, with airbnb rules with
         <strong> eslint</strong>
         . I find the linting rules help enforce
         standards and good practice when working on a large codebase with others.
+      </p>
+      <p>
+        I like to develop this app as close to a real world application as I can,
+        not just for my consistency, but I have used parts of this as a training course
+        and found it useful to make the process of submitting and deploying similar to applications
+        I&#39;ve worked on. In that regard I use github to store my code repository, and have linked it
+        to Netlify for cloud hosting, with the continuous integration building and deploying whenever I push to
+        my github repo&#39;s development branch.
       </p>
     </div>
   )
