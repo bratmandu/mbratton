@@ -6,9 +6,10 @@ function Home() {
       <h1>Home</h1>
       <p>
         Welcome, this is my personal web application built with React, using stateless
-        functional components and tailored to run in all browser sizes for maximum 
+        functional components and tailored to run in all browser sizes for maximum
         <strong> responsiveness</strong>
-        .
+        . Note that this application is currently undergoing a revamp! Some of the other sections
+        may be of more use to a UI developer as they involve tracking values in the chrome devtools console.
       </p>
       <p>
         Within this application I have included some technical demonstrations of the various features of
