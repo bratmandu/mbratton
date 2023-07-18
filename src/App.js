@@ -17,7 +17,7 @@ function App() {
   return (
     <div>
       <Nav />
-      <div className="m-3 mb-content position-absolute">
+      <div className="m-3 mb-content position-absolute d-flex justify-content-center">
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
