@@ -1,7 +1,6 @@
 import React, {
   useState, useEffect
 } from 'react'
-import MyHeader from '../standard/header/myHeader'
 
 function UseEffectSamples() {
   const [floorLevel, setFloorLevel] = useState(0)
@@ -102,7 +101,7 @@ function UseEffectSamples() {
         as well as illustrating how dependencies work with useEffect
       </p>
       <div className="card mb-img-card me-3 mb-3 float-end">
-        <img className="card-img-top p-3 pb-0" src="./images/useEff-A.png" alt="UseEffect examples" />
+        <img className="card-img-top p-3 pb-0" src="/images/useEff-A.png" alt="UseEffect examples" />
         <div className="card-body">
           <p className="card-text">
             A little trick to show the asynchronous nature of hooks.
@@ -137,7 +136,7 @@ function UseEffectSamples() {
             or indeed when the component is destroyed.
           </p>
           <div className="card mb-img-card float-start me-3 mb-3">
-            <img className="card-img-top p-3 pb-0" src="./images/useEff-B.png" alt="UseEffect examples" />
+            <img className="card-img-top p-3 pb-0" src="/images/useEff-B.png" alt="UseEffect examples" />
             <div className="card-body">
               <p className="card-text">
                 I have these useEffects with various dependencies.
