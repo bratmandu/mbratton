@@ -28,7 +28,7 @@ function App() {
           <Route path="/uxSampleTwo" element={<UXStrippedSample />} />
           <Route path="/callbacksNone" element={<UseCallbackSamplesNone />} />
           <Route path="/callbacks" element={<UseCallbackSamples />} />
-          <Route path="*" element={<UseEffectSamples />} />
+          <Route path="*" element={<Home />} />
         </Routes>
       </div>
     </div>
