@@ -7,6 +7,11 @@ body {
   padding-top: 70px;
 }
 
+table td {
+  border: 1px solid rgb(124, 113, 132);
+  padding: 0.2rem;
+}
+
 // values for smaller screens
 @media (max-width: 992px) {
   body {
