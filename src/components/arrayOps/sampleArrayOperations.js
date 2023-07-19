@@ -158,7 +158,7 @@ function ArrayOperationSamples() {
             <img className="card-img-top p-3 pb-0" src={arraysA} alt="Array operation examples" />
             <div className="card-body">
               <p className="card-text">
-                The vanailla js and lodash code to acheive the same effects
+                The vanailla js and lodash code to achieve the same effects
                 without the need for a separate sorting method.
               </p>
             </div>
