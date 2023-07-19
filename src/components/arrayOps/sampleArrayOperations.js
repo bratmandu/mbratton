@@ -65,7 +65,8 @@ function ArrayOperationSamples() {
   }
 
   const logDataSortedByLastNameAlt = () => {
-    setMainData(_.sortBy(mainData, 'lastName'))
+    const byLastNameLodash = _.sortBy(mainData, 'lastName')
+    setMainData(byLastNameLodash)
   }
 
   const logDataWhereSalary27kOrOver = () => {
