@@ -8,7 +8,6 @@ import UseEffectSamples from './components/useEffects/sampleUseEffect'
 import ArrayOperationSamples from './components/arrayOps/sampleArrayOperations'
 import JsonLoopSamplesOptimised from './components/jsonLoops/jsonLoopsOptimised'
 import UXOrigSample from './components/uxSamples/uxBetterSample'
-import UXStrippedSample from './components/uxSamples/uxWorseSample'
 import UseCallbackSamples from './components/callbacks/sampleCallbacks'
 import UseCallbackSamplesNone from './components/callbacks/sampleCallbacksNone'
 import './css/main.scss'
@@ -17,7 +16,7 @@ function App() {
   return (
     <div>
       <Nav />
-      <div className="m-3 mb-content position-absolute d-flex justify-content-center">
+      <div className="m-3 mb-content">
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
@@ -25,7 +24,6 @@ function App() {
           <Route path="/arrays" element={<ArrayOperationSamples />} />
           <Route path="/jsonLoops" element={<JsonLoopSamplesOptimised />} />
           <Route path="/uxSampleOne" element={<UXOrigSample />} />
-          <Route path="/uxSampleTwo" element={<UXStrippedSample />} />
           <Route path="/callbacksNone" element={<UseCallbackSamplesNone />} />
           <Route path="/callbacks" element={<UseCallbackSamples />} />
           <Route path="*" element={<Home />} />

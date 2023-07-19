@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { errorMap, fieldLengths } from '../../utils/formUtils'
 
-function UXStrippedSample() {
+function UxFormPoor() {
   // Form contents Object, this is what we would 'submit' and will be populated using the form
   const [formData, setFormData] = useState({
     firstName: '',
@@ -101,121 +101,119 @@ function UXStrippedSample() {
   }
 
   return (
-    <div>
-      <div className="wrapper w-100">
-        <div className="form-wrapper m-3">
-          <form onSubmit={formSubmit}>
-            <div className="ps-3 mt-3">
-              <input
-                type="text"
-                name="name"
-                id="firstName"
-                onChange={handleFormChange}
-                className={`${formValidation.firstName.length > 0 && 'input-error'} py-2`}
-                placeholder="first name (required)"
-              />
+    <div className="wrapper w-100">
+      <div className="form-wrapper m-3">
+        <form onSubmit={formSubmit}>
+          <div className="ps-3 mt-3">
+            <input
+              type="text"
+              name="name"
+              id="firstName"
+              onChange={handleFormChange}
+              className={`${formValidation.firstName.length > 0 && 'input-error'} py-2`}
+              placeholder="first name (required)"
+            />
+          </div>
+          <div className="px-3 mt-3">
+            <div className="error-label px-3">
+              {formValidation.firstName}
             </div>
-            <div className="px-3 mt-3">
-              <div className="error-label px-3">
-                {formValidation.firstName}
-              </div>
+          </div>
+          <div className="ps-3 mt-3">
+            <input
+              type="text"
+              name="name"
+              id="secondName"
+              onChange={handleFormChange}
+              className={`${formValidation.secondName.length > 0 && 'input-error'} py-2`}
+              placeholder="second name (required)"
+            />
+          </div>
+          <div className="px-3 my-3">
+            <div className="error-label px-3">
+              {formValidation.secondName}
             </div>
-            <div className="ps-3 mt-3">
-              <input
-                type="text"
-                name="name"
-                id="secondName"
-                onChange={handleFormChange}
-                className={`${formValidation.secondName.length > 0 && 'input-error'} py-2`}
-                placeholder="second name (required)"
-              />
+          </div>
+          <div className="m-3">
+            <label htmlFor="ageBracket" className="ps-0 p-2">
+              Age Bracket (required):
+            </label>
+            <select id="ageBracket" name="select" defaultValue="" className="p-2 ms-1" onChange={handleFormChange}>
+              <option value="0-17">
+                0-17
+              </option>
+              <option value="18-34">
+                18-34
+              </option>
+              <option value="35-54">
+                35-54
+              </option>
+              <option value="55-64">
+                55-64
+              </option>
+              <option value="65+">
+                65+
+              </option>
+            </select>
+          </div>
+          <div className="ps-3 my-3">
+            <input
+              type="text"
+              name="phone"
+              id="phone"
+              onChange={handleFormChange}
+              className={`${formValidation.phone.length > 0 && 'input-error'} py-2`}
+              placeholder="phone number (required)"
+            />
+          </div>
+          <div className="px-3 mt-3">
+            <div className="error-label px-3">
+              {formValidation.phone}
             </div>
-            <div className="px-3 my-3">
-              <div className="error-label px-3">
-                {formValidation.secondName}
-              </div>
+          </div>
+          <div className="ps-3 my-3">
+            <input
+              type="text"
+              name="email"
+              id="email"
+              onChange={handleEmailUpdated}
+              onBlur={handleFormChange}
+              className={`${formValidation.email?.length > 0 && 'input-error'} py-2`}
+              placeholder="email (required)"
+            />
+          </div>
+          <div className="px-3 my-3">
+            <div className="error-label px-3">
+              {formValidation.email}
             </div>
-            <div className="m-3">
-              <label htmlFor="ageBracket" className="ps-0 p-2">
-                Age Bracket (required):
-              </label>
-              <select id="ageBracket" name="select" defaultValue="" className="p-2 ms-1" onChange={handleFormChange}>
-                <option value="0-17">
-                  0-17
-                </option>
-                <option value="18-34">
-                  18-34
-                </option>
-                <option value="35-54">
-                  35-54
-                </option>
-                <option value="55-64">
-                  55-64
-                </option>
-                <option value="65+">
-                  65+
-                </option>
-              </select>
+          </div>
+          <div className="m-3">
+            <textarea
+              type="text"
+              name="message"
+              id="message"
+              onChange={handleFormChange}
+              rows={4}
+              maxLength={fieldLengths.message}
+              className={`${formValidation.message.length > 0 && 'input-error'} py-2`}
+              placeholder="Please write your message here (required)"
+            />
+          </div>
+          {sentMessage && (
+            <div className="mx-3 alert-text">
+              {sentMessage}
             </div>
-            <div className="ps-3 my-3">
-              <input
-                type="text"
-                name="phone"
-                id="phone"
-                onChange={handleFormChange}
-                className={`${formValidation.phone.length > 0 && 'input-error'} py-2`}
-                placeholder="phone number (required)"
-              />
-            </div>
-            <div className="px-3 mt-3">
-              <div className="error-label px-3">
-                {formValidation.phone}
-              </div>
-            </div>
-            <div className="ps-3 my-3">
-              <input
-                type="text"
-                name="email"
-                id="email"
-                onChange={handleEmailUpdated}
-                onBlur={handleFormChange}
-                className={`${formValidation.email?.length > 0 && 'input-error'} py-2`}
-                placeholder="email (required)"
-              />
-            </div>
-            <div className="px-3 my-3">
-              <div className="error-label px-3">
-                {formValidation.email}
-              </div>
-            </div>
-            <div className="m-3">
-              <textarea
-                type="text"
-                name="message"
-                id="message"
-                onChange={handleFormChange}
-                rows={4}
-                maxLength={fieldLengths.message}
-                className={`${formValidation.message.length > 0 && 'input-error'} py-2`}
-                placeholder="Please write your message here (required)"
-              />
-            </div>
-            {sentMessage && (
-              <div className="mx-3 alert-text">
-                {sentMessage}
-              </div>
-            )}
-            <button
-              type="submit"
-              className="submit-button m-3 p-2"
-            >
-              Submit
-            </button>
-          </form>
-        </div>
+          )}
+          <button
+            type="submit"
+            className="submit-button m-3 p-2"
+          >
+            Submit
+          </button>
+        </form>
       </div>
     </div>
   )
 }
 
-export default UXStrippedSample
+export default UxFormPoor
