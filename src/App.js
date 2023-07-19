@@ -5,7 +5,7 @@ import {
 import Nav from './utils/nav'
 import Home from './components/home/home'
 import UseEffectSamples from './components/useEffects/sampleUseEffect'
-import ArrayOperationSamples from './components/arrayOps/sampleArrayOperations'
+import ArrayOperationSamples from './components/arrayOps/yampleArrayOperations'
 import JsonLoopSamplesOptimised from './components/jsonLoops/jsonLoopsOptimised'
 import UXOrigSample from './components/uxSamples/uxBetterSample'
 import UXStrippedSample from './components/uxSamples/uxWorseSample'
