@@ -45,9 +45,6 @@ function Nav() {
               <Link to="/uxSampleOne" className="nav-link" onClick={handleNavClick}>UX Original Sample</Link>
             </li>
             <li className={navItemClass}>
-              <Link to="/uxSampleTwo" className="nav-link" onClick={handleNavClick}>UX Stripped Sample</Link>
-            </li>
-            <li className={navItemClass}>
               <Link to="/callbacksNone" className="nav-link" onClick={handleNavClick}>useCallback Sample - without</Link>
             </li>
             <li className={navItemClass}>
