@@ -38,7 +38,7 @@ function JsonLoopSamplesUnoptimised() {
   return (
     <div>
       <MyHeader
-        pageName="JSON Loop examples"
+        pageName="JSON Loop examples poor"
       />
       <table>
         <thead>
