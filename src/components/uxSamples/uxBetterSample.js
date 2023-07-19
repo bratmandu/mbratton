@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { errorMap, fieldLengths } from '../../utils/formUtils'
-import MyHeader from '../standard/header/myHeader'
 // import '../../css/samples.scss'
 
 function UXOrigSample() {
@@ -109,9 +108,6 @@ function UXOrigSample() {
 
   return (
     <div>
-      <MyHeader
-        pageName="UX Original examples"
-      />
       <div className="wrapper w-100">
         <div className="form-wrapper m-3">
           <form onSubmit={formSubmit}>

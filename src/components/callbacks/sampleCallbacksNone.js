@@ -2,7 +2,6 @@ import React, {
   useState
 } from 'react'
 import { string, func } from 'prop-types'
-import MyHeader from '../standard/header/myHeader'
 
 function MyButton({ handleClick, name }) {
   console.log(`${name} rendered!`)
@@ -26,9 +25,6 @@ function UseCallbackSamples() {
 
   return (
     <div>
-      <MyHeader
-        pageName="js callBack and JS hook useCallback examples"
-      />
       <h5>With no useCallback:</h5>
       <div>When either button is clicked, will log out the component rendered log, and both buttonOne and buttonTwo rendered logs</div>
       {/*

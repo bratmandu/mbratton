@@ -2,7 +2,6 @@ import React, {
   useState, useCallback
 } from 'react'
 import { string, func } from 'prop-types'
-import MyHeader from '../standard/header/myHeader'
 
 function MyButton({ handleClick, name }) {
   console.log(`${name} rendered!`)
@@ -45,9 +44,6 @@ function UseCallbackSamples() {
 
   return (
     <div>
-      <MyHeader
-        pageName="js callBack and JS hook useCallback examples"
-      />
       <h5>With useCallback:</h5>
       <div>When either button is clicked, will log out the component rendered log, and only the log of the button clicked</div>
       {/*

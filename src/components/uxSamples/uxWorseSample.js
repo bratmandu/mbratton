@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { errorMap, fieldLengths } from '../../utils/formUtils'
-import MyHeader from '../standard/header/myHeader'
 
 function UXStrippedSample() {
   // Form contents Object, this is what we would 'submit' and will be populated using the form
@@ -103,9 +102,6 @@ function UXStrippedSample() {
 
   return (
     <div>
-      <MyHeader
-        pageName="UX Stripped example"
-      />
       <div className="wrapper w-100">
         <div className="form-wrapper m-3">
           <form onSubmit={formSubmit}>
