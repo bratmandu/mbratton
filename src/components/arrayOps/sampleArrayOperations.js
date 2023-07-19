@@ -65,7 +65,7 @@ function ArrayOperationSamples() {
   }
 
   const logDataSortedByLastNameAlt = () => {
-    const byLastNameLodash = _.sortBy(mainData, 'lastName')
+    const byLastNameLodash = _.sortBy(sampleJson, 'lastName')
     setMainData(byLastNameLodash)
   }
 
