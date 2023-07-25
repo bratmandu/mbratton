@@ -42,14 +42,14 @@ function Nav() {
               <Link to="/jsonLoops" className="nav-link" onClick={handleNavClick}>JSON Loop Samples</Link>
             </li>
             <li className={navItemClass}>
-              <Link to="/uxSampleOne" className="nav-link" onClick={handleNavClick}>UX Original Sample</Link>
+              <Link to="/uxSampleOne" className="nav-link" onClick={handleNavClick}>UX Sample</Link>
             </li>
             <li className={navItemClass}>
-              <Link to="/callbacksNone" className="nav-link" onClick={handleNavClick}>useCallback Sample - without</Link>
+              <Link to="/callbacksNone" className="nav-link" onClick={handleNavClick}>useCallback Sample</Link>
             </li>
-            <li className={navItemClass}>
-              <Link to="/callbacks" className="nav-link" onClick={handleNavClick}>useCallback Sample</Link>
-            </li>
+            {/* <li className={navItemClass}>
+              <Link to="/callbacks" className="nav-link" onClick={handleNavClick}>Sample Application</Link>
+            </li> */}
           </ul>
         </div>
       </div>
