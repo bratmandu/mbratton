@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { errorMap, fieldLengths } from '../../utils/formUtils'
-import UxFormPoor from './uxFormPoor'
 
 function UxFormBetter() {
   // Form contents Object, this is what we would 'submit' and will be populated using the form

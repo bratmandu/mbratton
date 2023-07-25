@@ -9,7 +9,7 @@ import ArrayOperationSamples from './components/arrayOps/sampleArrayOperations'
 import JsonLoopSamplesOptimised from './components/jsonLoops/jsonLoopsOptimised'
 import UXOrigSample from './components/uxSamples/uxBetterSample'
 import UseCallbackSamples from './components/callbacks/sampleCallbacks'
-import UseCallbackSamplesNone from './components/callbacks/sampleCallbacksNone'
+import SampleApp from './components/sampleApp/sampleApp'
 import './css/main.scss'
 
 function App() {
@@ -24,8 +24,8 @@ function App() {
           <Route path="/arrays" element={<ArrayOperationSamples />} />
           <Route path="/jsonLoops" element={<JsonLoopSamplesOptimised />} />
           <Route path="/uxSampleOne" element={<UXOrigSample />} />
-          <Route path="/callbacksNone" element={<UseCallbackSamplesNone />} />
           <Route path="/callbacks" element={<UseCallbackSamples />} />
+          <Route path="/sampleApp" element={<SampleApp />} />
           <Route path="*" element={<Home />} />
         </Routes>
       </div>

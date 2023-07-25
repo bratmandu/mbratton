@@ -29,7 +29,7 @@ table td {
     height: auto;
   }
 
-  .mb-img-card {
+  .mb-img-card .mb-img-card-lg {
     width: 100%;
   }
 }
@@ -48,6 +48,12 @@ h2 {
   }
   .mb-img-card {
     width: 30%;
+  }
+  .mb-img-card-md {
+    width: 40%;
+  }
+  .mb-img-card-lg {
+    width: 50%;
   }
   
 }

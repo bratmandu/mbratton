@@ -45,11 +45,11 @@ function Nav() {
               <Link to="/uxSampleOne" className="nav-link" onClick={handleNavClick}>UX Sample</Link>
             </li>
             <li className={navItemClass}>
-              <Link to="/callbacksNone" className="nav-link" onClick={handleNavClick}>useCallback Sample</Link>
+              <Link to="/callbacks" className="nav-link" onClick={handleNavClick}>useCallback Sample</Link>
             </li>
-            {/* <li className={navItemClass}>
-              <Link to="/callbacks" className="nav-link" onClick={handleNavClick}>Sample Application</Link>
-            </li> */}
+            <li className={navItemClass}>
+              <Link to="/sampleApp" className="nav-link" onClick={handleNavClick}>Sample Application</Link>
+            </li>
           </ul>
         </div>
       </div>
