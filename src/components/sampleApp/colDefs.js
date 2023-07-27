@@ -1,5 +1,12 @@
 import React from 'react'
 
+export function isValid(value) {
+  if (Number.isNaN(Number(value)) || !value?.length > 0) {
+    return false
+  }
+  return true
+}
+
 const columnDefs = [
   {
     headerName: 'ID',
@@ -34,19 +41,29 @@ const columnDefs = [
     headerName: 'Override',
     field: 'valueC',
     editable: true,
-    cellDataType: 'number',
     cellRenderer(params) {
       return (
-        <span>
-          <i className="bi bi-pencil" />
-          {params.value}
+        <span className="mb-edit-cell">
+          <i className="bi bi-pencil float-end my-3" />
+          {params.value && !isValid(params.value) ? '' : params.value}
         </span>
       )
     }
   },
   {
     headerName: 'Total',
-    field: 'valueTotal'
+    field: 'valueTotal',
+    cellRenderer({ data }) {
+      let totalValue = 0
+      if (isValid(data?.valueC)) {
+        totalValue = data.valueC
+      } else {
+        totalValue = data.valueA + data.valueB
+      }
+      return (
+        parseFloat(totalValue).toFixed(2)
+      )
+    }
   }
 ]
 

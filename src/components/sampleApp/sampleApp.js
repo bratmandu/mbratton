@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { AgGridReact } from 'ag-grid-react'
 import { Toast } from 'bootstrap'
-import columnDefs from './colDefs'
+import columnDefs, { isValid } from './colDefs'
 import CustomToast from '../../utils/toasts'
 import { useFetch, postHeader } from '../../utils/fetching'
 import 'ag-grid-community/styles/ag-grid.css'
@@ -17,6 +17,12 @@ function SampleApp() {
     error: dataError
   } = useFetch()
   const [show, setShow] = useState(false)
+  const [gridApi, setGridApi] = useState()
+
+  function gridReady(params) {
+    setGridApi(params.api)
+    params.api.sizeColumnsToFit()
+  }
 
   const setToast = (condition) => {
     const toastEl = document.getElementById(condition)
@@ -134,6 +140,20 @@ function SampleApp() {
           >
             Get data - bad url
           </button>
+          <button
+            type="button"
+            disabled={!results}
+            className="btn btn-primary m-3 p-2"
+            onClick={() => {
+              const items = []
+              gridApi.forEachNode((node) => {
+                items.push(node.data)
+              })
+              console.log('current grid: ', items)
+            }}
+          >
+            Log current table data
+          </button>
           {isLoading && (
             <p>
               Loading...
@@ -148,12 +168,20 @@ function SampleApp() {
             <div className="ag-theme-alpine table-container">
               <AgGridReact
                 rowData={results}
+                onGridReady={gridReady}
                 columnDefs={columnDefs}
                 animateRows
                 defaultColDef={{
                   sortable: true,
                   filter: 'agTextColumnfilter',
                   resizable: true
+                }}
+                onCellEditingStopped={(event) => {
+                  // could improve this means of clearing invalid values
+                  if (!isValid(event.node.data.valueC)) {
+                    event.node.setDataValue('valueC', '')
+                  }
+                  event.node.setData(event.data)
                 }}
               />
             </div>
