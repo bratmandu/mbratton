@@ -1,8 +1,11 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect } from 'react'
+import { AgGridReact } from 'ag-grid-react'
 import { Toast } from 'bootstrap'
+import columnDefs from './colDefs'
 import CustomToast from '../../utils/toasts'
 import { useFetch, postHeader } from '../../utils/fetching'
-// import callbackA from './images/callbackA.png'
+import 'ag-grid-community/styles/ag-grid.css'
+import 'ag-grid-community/styles/ag-theme-alpine.min.css'
 
 function SampleApp() {
   const url = 'https://run.mocky.io/v3/91bc6a83-4144-4870-997c-709380196660'
@@ -27,34 +30,20 @@ function SampleApp() {
   }
 
   useEffect(() => {
-    if (dataError) {
+    if (!isLoading && dataError) {
       hideToast('successToast')
       setToast('failToast')
     }
-  })
+  }, [dataError, isLoading])
 
-  const getGoodData = () => {
-    if (!isLoading) {
-      getData(url, postHeader())
-        .then(
-          () => {
-            hideToast('failToast')
-            setToast('successToast')
-          }
-        )
+  useEffect(() => {
+    if (!isLoading && results) {
+      hideToast('failToast')
+      setToast('successToast')
     }
-  }
+  }, [results, isLoading])
 
-  const getBadData = () => {
-    if (!isLoading) {
-      getData(badUrl, postHeader())
-        .then(
-          () => {
-            setToast('successToast')
-          }
-        )
-    }
-  }
+  console.log('results: ', results)
 
   return (
     <div className="container">
@@ -77,7 +66,7 @@ function SampleApp() {
             type="button"
             className="btn btn-primary m-3 p-2"
             onClick={() => {
-              getGoodData()
+              getData(url, postHeader())
             }}
           >
             Get data
@@ -86,7 +75,7 @@ function SampleApp() {
             type="button"
             className="btn btn-primary m-3 p-2"
             onClick={() => {
-              getBadData()
+              getData(badUrl, postHeader())
             }}
           >
             Get data - bad url
@@ -97,7 +86,18 @@ function SampleApp() {
             </p>
           )}
           {results && !isLoading && (
-            <div>Results will go here in a grid</div>
+            <div className="ag-theme-alpine table-container">
+              <AgGridReact
+                rowData={results}
+                columnDefs={columnDefs}
+                animateRows
+                defaultColDef={{
+                  sortable: true,
+                  filter: 'agTextColumnfilter',
+                  resizable: true
+                }}
+              />
+            </div>
           )}
         </div>
       </div>

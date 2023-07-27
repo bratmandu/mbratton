@@ -16,6 +16,9 @@ $brand-buttonPositiveMain: white;
 // size values:
 $border-radius-forms: 5px;
 
+// z-indexes
+$zindex-popover: 1000;
+
 :export {
   statusNegative: $status-negative;
   statusPositive: $status-positive;

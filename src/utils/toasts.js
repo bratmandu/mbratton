@@ -5,7 +5,7 @@ export default function CustomToast({
   id, className, header, text
 }) {
   return (
-    <div className="position-fixed bottom-0 end-0 p-3">
+    <div className="position-fixed bottom-0 end-0 p-3 mb-toast">
       <div id={id} className={`toast hide ${className}`} role="alert" aria-live="assertive" aria-atomic="true">
         <div className="toast-header">
           <strong className="me-auto">{header}</strong>

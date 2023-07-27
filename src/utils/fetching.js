@@ -16,18 +16,19 @@ export const useFetch = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState()
 
-  const callFetch = useCallback(async (url, header) => {
+  const callFetch = async (url, header) => {
     setLoading(true)
     setError(false)
     setResponse()
     try {
       const fetchResponse = await fetch(url, header)
+        .then((data) => data.json())
       setResponse(fetchResponse)
     } catch (fetchError) {
       setError(fetchError)
     }
     setLoading(false)
-  }, [])
+  }
 
   return {
     response,

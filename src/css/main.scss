@@ -1,6 +1,7 @@
 @import './colours.module';
-@import "ag-grid-community/dist/styles/ag-grid.css";
-@import "ag-grid-community/dist/styles/ag-theme-balham-dark.css";
+// @import "ag-grid-community/styles/ag-grid.css";
+// @import "ag-grid-community/styles/ag-theme-balham-dark.css";
+// @import 'ag-grid-community/styles/ag-theme-alpine.min.css';
 
 body {
   font: 1em sans-serif;
@@ -10,6 +11,14 @@ body {
 table td {
   border: 1px solid rgb(124, 113, 132);
   padding: 0.2rem;
+}
+
+.table-container {
+  height: -webkit-calc(100vh - 20px);
+}
+
+.mb-toast {
+  z-index: $zindex-popover;
 }
 
 // values for smaller screens
