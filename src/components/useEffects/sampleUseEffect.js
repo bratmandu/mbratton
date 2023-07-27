@@ -11,25 +11,6 @@ function UseEffectSamples() {
   /**
    * UseEffect hooks, dependencies, and the current state of variables with useState:
    */
-
-  /*
-    Questions (code below is copy of useEffectSamples):
-    1 - User loads page, what logs are shown (+values of each if any)?
-    A - ALPHA, BETA: 0, GAMMA: 0, DELTA: A, EPSILON
-
-    2 - After page load and clearing of initial logs, user clicks 'Increase Floor Level', what logs are shown (+values)?
-    A - LEVEL: 0, BETA: 1, GAMMA: 1, EPSILON
-
-    3 - Then user clicks 'Set Section to B', what logs are added (+values)?
-    A - SECTION: A, BETA: 1, DELTA: B, EPSILON
-
-    4 - Then user clicks 'Set Section to B' a second time, what logs are added?
-    A - just 'SECTION: B'
-
-    5 - If component is unmounted, what logs will be added?
-    A - 'ZETA' as below, if a useEffect has a return this is called on unmount
-  */
-
   useEffect(() => {
     console.log('Alpha')
     return () => {
@@ -113,15 +94,14 @@ function UseEffectSamples() {
           <p>
             The button to increase floor level, will call a method which sets the state of the floorLevel
             variable to it&#39;s value plus 1, then immediately logs out the value of the floorLevel state
-            to the console. I have used this question in interviews to determine knowledge of how the hooks work,
-            as it is common to see people assume that the log will show the result of the value + 1.
+            to the console. It is common to see people assume that the log will show the result of the value + 1.
             Of course due to the asynchronous nature of useState, this will actually log out the current value
             before 1 is added.
           </p>
           <p>
             The second button is similar, but it&#39;s method will set the value of the section variable to B.
             The console will of course log out the previous value because of the asynchronous nature of useState.
-            The importance of this is to do with the dependencies question, as setting a state var to the same value
+            The importance of this is to do with dependencies, as setting a state var to the same value
             it has previously will not cause a rerender, even when the variable is a dependency in a useEffect.
           </p>
           <div className="card mb-card mb-3">

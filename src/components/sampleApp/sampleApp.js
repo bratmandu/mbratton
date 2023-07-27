@@ -85,6 +85,11 @@ function SampleApp() {
               Loading...
             </p>
           )}
+          {dataError && (
+            <p>
+              There was a problem loading the data.
+            </p>
+          )}
           {results && !isLoading && (
             <div className="ag-theme-alpine table-container">
               <AgGridReact

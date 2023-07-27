@@ -85,8 +85,7 @@ function ArrayOperationSamples() {
         <div className="col col-12">
           <h1>Array operations</h1>
           <p>
-            A common interview question for a front end position often includes queries about array operations.
-            In practice, I will often use lodash or similar libraries for array filtering, etc. But it is good
+            I will often use lodash or similar libraries for array filtering, etc. But it is good
             to have a grasp of the basics.
           </p>
           <p>
