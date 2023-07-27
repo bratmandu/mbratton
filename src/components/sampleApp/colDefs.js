@@ -1,3 +1,5 @@
+import React from 'react'
+
 const columnDefs = [
   {
     headerName: 'ID',
@@ -27,6 +29,24 @@ const columnDefs = [
   {
     headerName: 'Value B',
     field: 'valueB'
+  },
+  {
+    headerName: 'Override',
+    field: 'valueC',
+    editable: true,
+    cellDataType: 'number',
+    cellRenderer(params) {
+      return (
+        <span>
+          <i className="bi bi-pencil" />
+          {params.value}
+        </span>
+      )
+    }
+  },
+  {
+    headerName: 'Total',
+    field: 'valueTotal'
   }
 ]
 

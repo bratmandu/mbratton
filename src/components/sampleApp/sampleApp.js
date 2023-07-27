@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AgGridReact } from 'ag-grid-react'
 import { Toast } from 'bootstrap'
 import columnDefs from './colDefs'
@@ -16,6 +16,7 @@ function SampleApp() {
     callFetch: getData,
     error: dataError
   } = useFetch()
+  const [show, setShow] = useState(false)
 
   const setToast = (condition) => {
     const toastEl = document.getElementById(condition)
@@ -43,8 +44,6 @@ function SampleApp() {
     }
   }, [results, isLoading])
 
-  console.log('results: ', results)
-
   return (
     <div className="container">
       <CustomToast
@@ -62,6 +61,61 @@ function SampleApp() {
       <div className="row justify-content-center">
         <div className="col col-12">
           <h1>Sample Application</h1>
+          <div className="accordion" id="accordionExample">
+            <div className="accordion-item">
+              <h2 className="accordion-header">
+                <button
+                  className={`accordion-button${show ? '' : ' collapsed'}`}
+                  type="button"
+                  onClick={() => setShow(!show)}
+                >
+                  {show ? 'Contract to hide info' : 'Expand to show more info'}
+                </button>
+              </h2>
+              <div
+                className={`accordion-collapse collapse ${show ? 'show' : 'hide'}`}
+                data-bs-parent="#accordionExample"
+              >
+                <div className="accordion-body">
+                  <p>
+                    In this example, I&#39;m using AgGridReact - a powerful library that lets me
+                    take some json data, and create a table complete with filtering, sorting, rearranging,
+                    and a host of other options, typical of tables. Whilst I often run through creating a
+                    basic html table from scratch when training folks in React, which of course is useful,
+                    I will transition this into using AgGridReact, as it can save a lot of time and effort,
+                    for example, from not having to write your own sorting algorithms.
+                  </p>
+                  <p>
+                    The enterprise version of AgGridReact even supports advanced features like row grouping,
+                    which is very handy for displaying large volumes of data.
+                  </p>
+                  <p>
+                    {`In this example, I have generated some sample JSON data using a combination of helpful
+                    websites, `}
+                    <a href="https://json-generator.com/">JSON Generator</a>
+                    , which allows me to set some rules and generate a large volumes of random data quickly.
+                    {'Secondly, '}
+                    <a href="https://designer.mocky.io/design">MockyIO</a>
+                    , which I can paste this JSON into, and generate a custom API response endpoint to hit so that
+                    I can return the JSON data.
+                  </p>
+                  <p>
+                    With these in place, I have a couple of buttons here, one of which hits the mocky url, and
+                    one which hits an invalid url, so show what happens when I do a fetch on a bad url.
+                  </p>
+                  <p>
+                    I&#39;ve included bootstrap Toasts, which are in effect like push notifications to indicate
+                    if a fetch was successful or erroneous. These will show when the data is retrieved or if there
+                    is an error.
+                  </p>
+                  <p>
+                    I have also stored this information inside an accordion so you can contract/expand to better see the
+                    table below. This is another feature of bootstrap that I modified slightly for my use here.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
           <button
             type="button"
             className="btn btn-primary m-3 p-2"
