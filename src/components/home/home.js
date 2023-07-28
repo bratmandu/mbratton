@@ -1,4 +1,8 @@
 import React from 'react'
+import home1array from './images/home1array.png'
+import home2table from './images/home2table.png'
+import home3ux from './images/home3ux.png'
+import home4resp from './images/home4resp.png'
 
 function Home() {
   return (
@@ -19,6 +23,14 @@ function Home() {
             <strong> React Hooks</strong>
             , working with data and UX principles.
           </p>
+          <div className="card mb-img-card mb-3 ms-md-3 float-end">
+            <img className="card-img-top p-3 pb-0" src={home4resp} alt="Responsive view" />
+            <div className="card-body">
+              <p className="card-text">
+                This web application is fully responsive for smaller screen sizes.
+              </p>
+            </div>
+          </div>
           <div className="card mb-card mb-3">
             <div className="card-body">
               <h5 className="card-title">A little about me</h5>
@@ -73,6 +85,15 @@ function Home() {
             Some of the ES6 feature have really helped speed up development in the last few years, such as
             using let and const, arrow functions with shorter syntax, mapping arrays, ternary operators and spreads.
           </p>
+          <div className="card mb-img-card-lg mb-3 mx-md-3">
+            <img className="card-img-top p-3 pb-0" src={home1array} alt="Ag Grid Table Sample" />
+            <div className="card-body">
+              <p className="card-text">
+                I have a page to demonstrate some common operations performed on arrays in javaScript/React.
+              </p>
+              <a href="/arrays" className="btn btn-primary stretched-link">Go to Arrays demonstration</a>
+            </div>
+          </div>
           <p>
             I&#39;m using
             <strong> Bootstrap </strong>
@@ -97,6 +118,16 @@ function Home() {
             in React basics I will do this to give a firm grasp of the fundamentals,
             before transitioning into using AGGrid.
           </p>
+          <div className="card mb-img-card-lg mb-3 ms-md-3 float-end">
+            <img className="card-img-top p-3 pb-0" src={home2table} alt="Ag Grid Table Sample" />
+            <div className="card-body">
+              <p className="card-text">
+                I have created a sample table using the Ag Grid library here. Includes sorting, filtering
+                editable cells and validation.
+              </p>
+              <a href="/sampleApp" className="btn btn-primary stretched-link">Go to Ag Grid Table</a>
+            </div>
+          </div>
           <p>
             Of course I use VS Code for my IDE, with airbnb rules with
             <strong> eslint</strong>

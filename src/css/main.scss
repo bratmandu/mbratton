@@ -19,6 +19,11 @@ table td {
   z-index: $zindex-popover;
 }
 
+.mb-row-disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
 // values for smaller screens
 @media (max-width: 992px) {
   body {
@@ -47,6 +52,10 @@ h1 {
 
 h2 {
   font: 1.2em sans-serif;
+}
+
+h3 {
+  font: 1.1em sans-serif;
 }
 // use height only on larger screens
 @media (min-width: 992px) {

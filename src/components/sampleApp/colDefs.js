@@ -1,17 +1,22 @@
 import React from 'react'
 
 export function isValid(value) {
-  if (Number.isNaN(Number(value)) || !value?.length > 0) {
+  if (value === undefined || !value?.length > 0 || Number.isNaN(Number(value))) {
     return false
   }
   return true
+}
+
+function isEditable(params) {
+  console.log('s edit params: ', params)
+  return params.data.isActive
 }
 
 const columnDefs = [
   {
     headerName: 'ID',
     field: 'id',
-    hide: true
+    hide: true,
   },
   {
     headerName: 'Region',
@@ -40,12 +45,12 @@ const columnDefs = [
   {
     headerName: 'Override',
     field: 'valueC',
-    editable: true,
+    editable: isEditable,
     cellRenderer(params) {
       return (
         <span className="mb-edit-cell">
           <i className="bi bi-pencil float-end my-3" />
-          {params.value && !isValid(params.value) ? '' : params.value}
+          {(params.value && !isValid(params.value)) ? '' : params.value && parseFloat(params.value).toFixed(2)}
         </span>
       )
     }

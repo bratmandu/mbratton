@@ -21,7 +21,12 @@ function SampleApp() {
 
   function gridReady(params) {
     setGridApi(params.api)
-    params.api.sizeColumnsToFit()
+  }
+
+  const onGridSizeChanged = (params) => {
+    if (params.clientWidth > 992) {
+      params.api.sizeColumnsToFit()
+    }
   }
 
   const setToast = (condition) => {
@@ -49,6 +54,13 @@ function SampleApp() {
       setToast('successToast')
     }
   }, [results, isLoading])
+
+  const getRowClass = (params) => {
+    if (!params.data.isActive) {
+      return 'mb-row-disabled'
+    }
+    return ''
+  }
 
   return (
     <div className="container">
@@ -118,10 +130,40 @@ function SampleApp() {
                     I have also stored this information inside an accordion so you can contract/expand to better see the
                     table below. This is another feature of bootstrap that I modified slightly for my use here.
                   </p>
+                  <h3>Table features</h3>
+                  <p>
+                    Using Ag Grid, I have made use of some of the features provided, to create this table,
+                    which is typical of the kind of applications required in the world of finance.
+                    The columns are of course
+                    <strong> sortable, filterable, and can be rearranged easily</strong>
+                    . The &apos;Override&apos; column is
+                    <strong> editable</strong>
+                    , with the icon indicating as such. Only number values can be entered here.
+                    The &apos;Total&apos; column will add up values from &apos;Value A&apos;
+                    and &apos;value B&apos; columns
+                    <strong> unless </strong>
+                    there is a value in &apos;Override&apos;, in which case it will use this. The JSON has some
+                    of the rows with a value of &apos;Is Active = false&apos;. This will cause a
+                    <strong> disabled </strong>
+                    class to be applied to a row, no pointer events and opacity reduced, the override on
+                    these rows is
+                    <strong> not </strong>
+                    enabled.
+                  </p>
+                  <p>
+                    The &apos;Log Current Table Data&apos; button will take the current table, edits and all,
+                    and log them out - in a real world scenario this would be like a submit button to send
+                    the edited table data to an endpoint.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
+          {!results && (
+            <p className="mt-3">
+              Hit the &apos;Get data&apos; button to grab some JSON and view the results in the table.
+            </p>
+          )}
           <button
             type="button"
             className="btn btn-primary m-3 p-2"
@@ -170,12 +212,14 @@ function SampleApp() {
                 rowData={results}
                 onGridReady={gridReady}
                 columnDefs={columnDefs}
+                onGridSizeChanged={onGridSizeChanged}
                 animateRows
                 defaultColDef={{
                   sortable: true,
                   filter: 'agTextColumnfilter',
                   resizable: true
                 }}
+                getRowClass={getRowClass}
                 onCellEditingStopped={(event) => {
                   // could improve this means of clearing invalid values
                   if (!isValid(event.node.data.valueC)) {
