@@ -23,12 +23,14 @@ function Home() {
             <strong> React Hooks</strong>
             , working with data and UX principles.
           </p>
-          <div className="card mb-img-card mb-3 ms-md-3 float-end">
-            <img className="card-img-top p-3 pb-0" src={home4resp} alt="Responsive view" />
+          <div className="card mb-img-card-lg mb-3 ms-md-3 float-end">
+            <img className="card-img-top p-3 pb-0" src={home2table} alt="Ag Grid Table Sample" />
             <div className="card-body">
               <p className="card-text">
-                This web application is fully responsive for smaller screen sizes.
+                I have created a sample table using the Ag Grid library here. Includes sorting, filtering
+                editable cells and validation.
               </p>
+              <a href="/sampleApp" className="btn btn-primary stretched-link">Go to Ag Grid Table</a>
             </div>
           </div>
           <div className="card mb-card mb-3">
@@ -118,16 +120,6 @@ function Home() {
             in React basics I will do this to give a firm grasp of the fundamentals,
             before transitioning into using AGGrid.
           </p>
-          <div className="card mb-img-card-lg mb-3 ms-md-3 float-end">
-            <img className="card-img-top p-3 pb-0" src={home2table} alt="Ag Grid Table Sample" />
-            <div className="card-body">
-              <p className="card-text">
-                I have created a sample table using the Ag Grid library here. Includes sorting, filtering
-                editable cells and validation.
-              </p>
-              <a href="/sampleApp" className="btn btn-primary stretched-link">Go to Ag Grid Table</a>
-            </div>
-          </div>
           <p>
             Of course I use VS Code for my IDE, with airbnb rules with
             <strong> eslint</strong>
